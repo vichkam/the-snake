@@ -93,14 +93,12 @@ class Snake(GameObject):
         head_x, head_y = self.get_head_position()
         dx, dy = self.direction
 
-        # Вычисление новой позиции с учетом прохождения сквозь стены
         new_x = (head_x + dx * GRID_SIZE) % SCREEN_WIDTH
         new_y = (head_y + dy * GRID_SIZE) % SCREEN_HEIGHT
         new_head = (new_x, new_y)
 
         self.positions.insert(0, new_head)
 
-        # Если длина змейки не увеличилась, удаляем последний элемент (хвост)
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
         else:
@@ -124,7 +122,6 @@ class Snake(GameObject):
 
     def draw(self):
         """Отрисовывает змейку на экране, затирая след."""
-        # Затираем след от предыдущего положения хвоста
         if self.last:
             last_rect = pygame.Rect(
                 (self.last[0], self.last[1]),
@@ -132,7 +129,6 @@ class Snake(GameObject):
             )
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
-        # Отрисовываем все сегменты змейки
         for position in self.positions:
             rect = pygame.Rect(
                 (position[0], position[1]),
@@ -176,12 +172,10 @@ def main():
         snake.update_direction()
         snake.move()
 
-        # Проверка на поедание яблока
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position(snake.positions)
 
-        # Проверка на столкновение с собой (самоукус)
         if snake.get_head_position() in snake.positions[1:]:
             screen.fill(BOARD_BACKGROUND_COLOR)
             snake.reset()
@@ -194,4 +188,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
