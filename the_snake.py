@@ -99,7 +99,7 @@ class Snake(GameObject):
         new_head = (new_x, new_y)
 
         self.positions.insert(0, new_head)
-        
+
         # Проверяем длину и удаляем хвост при необходимости
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
