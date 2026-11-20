@@ -118,7 +118,7 @@ class Snake(GameObject):
         """Сбрасывает змейку в начальное состояние."""
         self.length = 1
         self.positions = [self.position]
-        self.direction = RIGHT
+        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
         self.next_direction = None
         self.last = None
 
