@@ -1,4 +1,5 @@
 import random
+
 import pygame
 
 # Константы игры
@@ -98,9 +99,8 @@ class Snake(GameObject):
         new_head = (new_x, new_y)
 
         self.positions.insert(0, new_head)
-        self.last = self.positions.pop()
-
-        # Если длина змейки не увеличилась, запоминаем удаленный хвост
+        
+        # Проверяем длину и удаляем хвост при необходимости
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
         else:
@@ -118,7 +118,7 @@ class Snake(GameObject):
         """Сбрасывает змейку в начальное состояние."""
         self.length = 1
         self.positions = [self.position]
-        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
+        self.direction = RIGHT
         self.next_direction = None
         self.last = None
 
@@ -194,3 +194,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
