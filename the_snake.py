@@ -100,7 +100,7 @@ class Snake(GameObject):
 
         self.positions.insert(0, new_head)
 
-        # Проверяем длину и удаляем хвост при необходимости
+        # Если длина змейки не увеличилась, удаляем последний элемент (хвост)
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
         else:
